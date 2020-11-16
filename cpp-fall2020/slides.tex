@@ -1,0 +1,173 @@
+\documentclass{beamer} \usetheme{Madrid}
+\usecolortheme{beaver}
+
+\usepackage[utf8]{inputenc}
+\usepackage{mdframed}
+\usepackage{minted}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows}
+
+\tikzstyle{node} = [rectangle, minimum width=7mm, minimum height=7mm, text centered, fill=gray!30]
+\tikzstyle{arrow} = [thick,->,>=stealth]
+
+\newenvironment{question}[1][]{
+    \ifstrempty{#1}{}
+    {\mdfsetup{
+        frametitle={
+            \tikz[baseline=(current bounding box.east),outer sep=0pt]
+            \node[anchor=east,rectangle,fill=gray!30]
+            {#1};
+        }
+    }}
+    \mdfsetup{
+        innertopmargin=10pt,linecolor=gray!30,
+        linewidth=2pt,topline=true,
+        frametitleaboveskip=\dimexpr - \ht\strutbox\relax
+    }
+    \begin{mdframed}
+}{
+    \end{mdframed}
+}
+
+\title{C++ Workshop}
+\subtitle{Fall 2020}
+
+\author[]{Jack Leightcap\inst{1}\inst{2}}
+
+% this is pretty pretentious lmao
+\institute[IEEE, Wireless Club]{
+    \inst{1}IEEE -- \url{nuieeeofficers@gmail.com}
+    \and
+    \inst{2}Wireless Club -- \url{nuwirelessclub@gmail.com}
+}
+
+\date[Fall 2020]{October 26, 2020}
+
+\begin{document}
+\frame{\titlepage}
+
+\begin{frame}
+    \frametitle{Classifying C++}
+    \vfill
+    \begin{columns}[t]
+        \begin{column}{{\textwidth}/2}
+            \begin{center}
+                \textbf{Formally}
+                \begin{itemize}
+                    \item Compiled
+                    \item Statically (not strictly) Typed
+                    \item Object Oriented
+                    \item Systems Language
+                \end{itemize}
+            \end{center}
+        \end{column}
+        \begin{column}{{\textwidth}/2}
+            \begin{center}
+                \textbf{Informally}
+            \end{center}
+            \begin{itemize}
+                \item Large, fast moving standard
+                \item Often a strict subset is used
+                \item `Idiomatic' C++, tutorials fall out of date
+            \end{itemize}
+        \end{column}
+    \end{columns}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \frametitle{C++ versus C}
+    \vfill
+    \begin{table}[]
+    \begin{tabular}{l|l}
+        \multicolumn{1}{c|}{\textbf{C}} & \multicolumn{1}{c}{\textbf{C++}} \\
+        \hline
+        \ldots well, C & old: ``C with classes'' \\
+                       & new: distinct language, roots in C\\
+        portable standard library (\texttt{*libc}) & comprehensive standard library\\
+        control, specificity & faster development
+    \end{tabular}
+    \end{table}
+    \begin{center}
+    \end{center}
+    \vfill
+    ``There are only two kinds of languages: those that people [complain] about and those that nobody uses.'' -- Bjarne
+    Stroustrup, \texttt{comp.lang.c++}\\[1em]
+    ``Within C++, there is a much smaller and cleaner language struggling to get out'' -- Bjarne Stroustrup, \underline{The Design and Evolutions of C++} [1994]
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \frametitle{Modern Macros: \texttt{const} and \texttt{constexpr}}
+    \begin{itemize}
+        \item pitfalls of macros, use of \texttt{algorithm}  (example: \texttt{max.cc})
+        \item \texttt{const}, \texttt{constexpr} (example: \texttt{fib.cc})
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Templates}
+    \vfill
+    \begin{center}
+        What if types were\ldots parameters? (example: \texttt{maxt.cc})
+    \end{center}
+    \vfill
+\end{frame}
+\begin{frame}
+    \frametitle{STL Containers}
+    collection of data, with template type \texttt{T}:
+    \begin{itemize}
+        \item \texttt{std::pair<T>}: a\ldots pair!
+        \item \texttt{std::vector<T>}: lookup $O(1)$, change $O(n)$
+        \item \texttt{std::array<T>}: lookup $O(1)$, change $O(n)$ (size immutable)
+        \item \texttt{std::list<T>}: lookup $O(n)$, change $O(1)$
+        \item \texttt{std::set<T>}: general collection; with union, intersection, \ldots
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Fun with \texttt{vector}s}
+    \vfill
+    \begin{itemize}
+        \item Task 1: printing a list with \texttt{auto} and \texttt{for-range}
+        \item Task 2: sorting a list (Algo professors beware!)
+        \item Task 3: sorting a list with lambdas
+        \item Task 4: \texttt{any\_of}, \texttt{find\_if}, predicates with lambdas
+        \item Task 5: emulating \texttt{fold}s
+    \end{itemize}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \frametitle{Linting: \texttt{cpplint}}
+    \vfill
+    \begin{itemize}
+        \item What is a linter?
+        \item 1978 --- \texttt{lint}, C programs
+        \item 2011 --- \texttt{cpplint}, C++ programs, Google's style guide
+    \end{itemize}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \frametitle{Building and Build Systems: \texttt{CMake}}
+    \vfill
+    \begin{itemize}
+        \item Build systems and their use cases
+        \item Structure of a \texttt{CMakeLists.txt}
+    \end{itemize}
+    \vfill
+    Compiler choices:
+    \begin{itemize}
+        \item Which compiler, \texttt{g++}, \texttt{clang++}, etc.
+        \item Warnings: \texttt{-Wall}, \texttt{-Wextra}, \texttt{-Werror}, \texttt{-pedantic}, \texttt{-Wno-*}, etc.
+        \item Optimization: \texttt{-pipe}, \texttt{-DNDEBUG}, \texttt{-O2}, \texttt{-Os}, etc.
+        \item Standards: \texttt{-std=c++20}
+        \item Debugging: \texttt{-ggdb}
+        \item \texttt{strip} for size contraints
+        \item See \texttt{man g++} or other compiler documentation
+    \end{itemize}
+    \vfill
+\end{frame}
+
+\end{document}
