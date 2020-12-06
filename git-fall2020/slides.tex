@@ -1,6 +1,9 @@
 \documentclass{beamer} \usetheme{Madrid}
 \usecolortheme{beaver}
 
+\setbeamertemplate{enumerate items}[circle]
+\setbeamercolor{item projected}{bg=red!70!black}
+
 \usepackage[utf8]{inputenc}
 \usepackage{mdframed}
 \usepackage{minted}
@@ -50,6 +53,25 @@
 \frame{\titlepage}
 
 \begin{frame}
+    \frametitle{Intro: Workshop Structure}
+    \centering \textbf{Structure:}
+    \begin{enumerate}
+        \setlength\itemsep{1em}
+        \item Talk: how does \texttt{Git} work?
+        \item Example: managing homework
+        \item Hands-on: solve \texttt{Git} `puzzles' in browser
+    \end{enumerate}
+    \vfill
+    \centering \textbf{General:}
+    \begin{itemize}
+        \setlength\itemsep{1em}
+        \item Ask questions!
+              (want to know more? something isn't clear?)
+        \item Reach out: \url{neuwireless.slack.com}
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
     \frametitle{Background: What is \texttt{Git}?}
     \vfill
     \begin{figure}
@@ -95,10 +117,12 @@
 \begin{frame}
     \frametitle{Background: Big Idea of \texttt{Git}}
     \begin{question}[QUESTION: Intuition]
-        based on this description of what \texttt{Git} does, can you imagine how you would go about this manually?
-        \\[5mm]
-        what are some ideas for how taking a `snapshot' of some project would work?
+        based on this description of what \texttt{Git} does, can you imagine how you would go about making these `snapshots' manually?
     \end{question}
+    \vfill
+    \begin{figure}
+        \includegraphics[width=3cm]{final.png}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -139,17 +163,22 @@
     \frametitle{Example: Managing Local Files}
     \vfill
     \begin{question}[EXAMPLE: Homework Files]
-        \setbeamertemplate{enumerate items}[circle]
-        \setbeamercolor{item projected}{bg=red!70!black}
         \begin{enumerate}
             \item \emph{Init}: make some files, `save' them
-            \item \emph{Update}: changes, save those as well
-            \item \emph{Restore}: whoops, deleted something, restore it
+            \item \emph{Commit}: changes, save those as well
+            \item \emph{Checkout/Restore}: whoops, deleted something, restore it
             \item \emph{Branch}: new feature, make a new branch
             \item \emph{Merge}: done, merge back
         \end{enumerate}
     \end{question}
     \vfill
+\end{frame}
+
+\begin{frame}
+    \begin{figure}
+        \includegraphics[height=\textheight-2cm]{xkcd.png}
+        \caption{XKCD 1597 `Git' --- CC BY-NC 2.5}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
