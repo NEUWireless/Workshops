@@ -130,12 +130,12 @@
     \begin{center}
         \begin{figure}
             \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
-                \node[state, initial] (q1) {1};
+                \node[state] (q1) {1};
                 \node[state, right of=q1] (q2) {2};
                 \node[state, right of=q2] (q3) {3};
 
-                \draw (q1) edge node{} (q2)
-                      (q2) edge node{} (q3)
+                \draw (q2) edge node{} (q1)
+                      (q3) edge node{} (q2)
                 ;
             \end{tikzpicture}
             \caption{Linear History}
@@ -143,15 +143,15 @@
         \vfill
         \begin{figure}
             \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
-                \node[state, initial] (q1) {1};
+                \node[state] (q1) {1};
                 \node[state, right of=q1] (q21) {2.1};
                 \node[state, above of=q21] (q22) {2.2};
                 \node[state, right of=q21] (q3) {3};
 
-                \draw (q1)  edge node{} (q21)
-                      (q1)  edge[bend left] node{} (q22)
-                      (q21) edge node{} (q3)
-                      (q22) edge[bend left] node{} (q3)
+                \draw (q21)  edge node{} (q1)
+                      (q22)  edge[bend right] node{} (q1)
+                      (q3) edge node{} (q21)
+                      (q3) edge[bend right] node{} (q22)
                 ;
             \end{tikzpicture}
             \caption{Branched History}
