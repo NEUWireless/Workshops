@@ -4,6 +4,15 @@
 \usepackage[utf8]{inputenc}
 \usepackage{mdframed}
 \usepackage{minted}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, arrows}
+
+\tikzset{
+    ->,
+    node distance=3cm,
+    every state/.style={thick, fill=gray!10},
+    initial text=$ $,
+}
 
 \newenvironment{question}[1][]{
     \ifstrempty{#1}{}
@@ -29,7 +38,6 @@
 
 \author[]{Jack Leightcap\inst{1}\inst{2} \and Connor Northway\inst{2}}
 
-% this is pretty pretentious lmao
 \institute[IEEE, Wireless Club]{
     \inst{1}IEEE -- \url{nuieeeofficers@gmail.com}
     \and
@@ -42,7 +50,113 @@
 \frame{\titlepage}
 
 \begin{frame}
-    \frametitle{\texttt{Git}}
+    \frametitle{Background: What is \texttt{Git}?}
+    \vfill
+    \begin{figure}
+        \includegraphics[height=15mm]{logo.png}
+        \caption{Git Logo --- CC BY 3.0}
+    \end{figure}
+    \vfill
+    \begin{itemize}
+        \item broadly; \emph{a tool used to track changes to files and folders.}
+        \item facilitates collaboration on software projects
+        \item captures `snapshots' of a project
+        \item maintains metadata
+        \begin{itemize}
+            \item what was changed
+            \item who was it changed by
+            \item when was it changed
+            \item messages associated with changes
+        \end{itemize}
+    \end{itemize}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \frametitle{Background: What is \texttt{Git} used for?}
+    \vfill
+    \centering \textbf{Group Applications (Industry, co-op)}
+    \begin{itemize}
+        \item large software projects
+        \item resolve conflicts when multiple people are editing the same things
+        \item who wrote this!?
+    \end{itemize}
+    \vfill
+    \centering \textbf{Personal Applications}
+    \begin{itemize}
+        \item ``I swear this worked 10 minutes ago\ldots''
+        \item find what broke something and when
+        \item separate tasks; work on bug fixing is isolated from work on new feature
+        \item can use for class work!
+    \end{itemize}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \frametitle{Background: Big Idea of \texttt{Git}}
+    \begin{question}[QUESTION: Intuition]
+        based on this description of what \texttt{Git} does, can you imagine how you would go about this manually?
+        \\[5mm]
+        what are some ideas for how taking a `snapshot' of some project would work?
+    \end{question}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Background: Big Idea of \texttt{Git}}
+    \begin{center}
+        \begin{figure}
+            \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+                \node[state, initial] (q1) {1};
+                \node[state, right of=q1] (q2) {2};
+                \node[state, right of=q2] (q3) {3};
+
+                \draw (q1) edge node{} (q2)
+                      (q2) edge node{} (q3)
+                ;
+            \end{tikzpicture}
+            \caption{Linear History}
+        \end{figure}
+        \vfill
+        \begin{figure}
+            \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+                \node[state, initial] (q1) {1};
+                \node[state, right of=q1] (q21) {2.1};
+                \node[state, above of=q21] (q22) {2.2};
+                \node[state, right of=q21] (q3) {3};
+
+                \draw (q1)  edge node{} (q21)
+                      (q1)  edge[bend left] node{} (q22)
+                      (q21) edge node{} (q3)
+                      (q22) edge[bend left] node{} (q3)
+                ;
+            \end{tikzpicture}
+            \caption{Branched History}
+        \end{figure}
+    \end{center}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Example: Managing Local Files}
+    \vfill
+    \begin{question}[EXAMPLE: Homework Files]
+        \setbeamertemplate{enumerate items}[circle]
+        \setbeamercolor{item projected}{bg=red!70!black}
+        \begin{enumerate}
+            \item \emph{Init}: make some files, `save' them
+            \item \emph{Update}: changes, save those as well
+            \item \emph{Restore}: whoops, deleted something, restore it
+            \item \emph{Branch}: new feature, make a new branch
+            \item \emph{Merge}: done, merge back
+        \end{enumerate}
+    \end{question}
+    \vfill
+\end{frame}
+
+\begin{frame}
+    \frametitle{See Also}
+    \begin{itemize}
+        \item \url{https://wyag.thb.lt/} -- implement git from scratch in Python
+    \end{itemize}
 \end{frame}
 
 \end{document}
