@@ -59,6 +59,7 @@
         \setlength\itemsep{1em}
         \item Talk: how does \texttt{Git} work?
         \item Example: managing homework
+        \item Example: larger project
         \item Hands-on: solve \texttt{Git} `puzzles' in browser
     \end{enumerate}
     \vfill
@@ -69,6 +70,14 @@
               (want to know more? something isn't clear?)
         \item Reach out: \url{neuwireless.slack.com}
     \end{itemize}
+\end{frame}
+
+\begin{frame}
+    \frametitle{Intro: Teaching \texttt{Git}}
+    \begin{figure}
+        \includegraphics[height=\textheight-25mm]{xkcd.png}
+        \caption{XKCD 1597 `Git' --- CC BY-NC 2.5}
+    \end{figure}
 \end{frame}
 
 \begin{frame}
@@ -164,27 +173,55 @@
     \vfill
     \begin{question}[EXAMPLE: Homework Files]
         \begin{enumerate}
-            \item \emph{Init}: make some files, `save' them
-            \item \emph{Commit}: changes, save those as well
-            \item \emph{Checkout/Restore}: whoops, deleted something, restore it
-            \item \emph{Branch}: new feature, make a new branch
-            \item \emph{Merge}: done, merge back
+            \item \emph{Init}: make a file
+            \item \emph{Add/Commit}: save file
+            \item \emph{Branch/Checkout}: two new features
+            \item \emph{Merge}: combine those new features
+            \item \emph{Restore/Checkout}: restore save
         \end{enumerate}
     \end{question}
     \vfill
 \end{frame}
 
-\begin{frame}
-    \begin{figure}
-        \includegraphics[height=\textheight-2cm]{xkcd.png}
-        \caption{XKCD 1597 `Git' --- CC BY-NC 2.5}
-    \end{figure}
+\begin{frame} \frametitle{Background: \texttt{Git} vs. \texttt{GitHub}?}
+    \centering \textbf{What's the difference between \texttt{Git} and \texttt{GitHub}?}
+    \vfill
+    \begin{columns}[t]
+        \begin{column}{{\textwidth}/3}
+                \centering \textbf{Git}
+            \begin{itemize}
+                \item tool independent of GitHub
+                \item provides interface for services like GitHub
+            \end{itemize}
+        \end{column}
+        \begin{column}{{\textwidth}/3*2}
+            \centering \textbf{GitHub}
+            \begin{itemize}
+                \item centralized location to store git repositories
+                \item alternatives: GitLab, SourceHut, BitBucket, self hosting, \ldots
+                \item additional project management utilities
+                \item CI, CD, hosting, \ldots
+            \end{itemize}
+        \end{column}
+    \end{columns}
 \end{frame}
 
 \begin{frame}
     \frametitle{See Also}
+    \centering \textbf{General}
     \begin{itemize}
-        \item \url{https://wyag.thb.lt/} -- implement git from scratch in Python
+        \setlength\itemsep{1em}
+        \item \href{https://missing.csail.mit.edu/2020/version-control/}{MIT Missing Semester Lecture 6: Version Control (Git)}
+        \item \href{https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html}{Tim Pope: A Note About Git Commit Messages}
+        \item \href{https://wyag.thb.lt/}{Implement git from scratch in Python}
+        \item
+            \href{https://docs.github.com/en/free-pro-team@latest/github/collaborating-with-issues-and-pull-requests/about-pull-requests}{How to contribute to code on GitHub}
+    \end{itemize}
+    \vfill
+    \centering \textbf{Git Documentation}
+    \begin{itemize}
+        \item \href{https://git-scm.com/docs/git-config}{Git configuration documentation}
+        \item \href{https://git-scm.com/docs/gitignore}{\texttt{.gitignore} documentation}
     \end{itemize}
 \end{frame}
 
