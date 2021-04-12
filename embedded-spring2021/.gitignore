@@ -1,0 +1,14 @@
+*.synctex
+*.log
+*.out
+*.aux
+*.synctex.gz
+*.sta
+*.fls
+*.fdb_latexmk
+*.mx1
+*.toc
+**/_minted*
+*.nav
+*.snm
+*.vrb
