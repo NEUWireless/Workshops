@@ -117,7 +117,7 @@ $ screen /dev/ttyUSB0 115200
 		bgcolor=bg
 	]
 		{python}
-# This '>>>' is a prompt for a Python REPL>
+# This '>>>' is a prompt for a Python REPL
 >>>
 # can do some crazy math
 >>> 2 + 2
@@ -130,7 +130,7 @@ $ screen /dev/ttyUSB0 115200
 >>> os.listdir()
 ['boot.py', 'inet.py', 'led.py', 'light.py', 'main.py', 'temp.py']
 	\end{minted}
-		\caption{Connect with GNU Screen}
+		\caption{Python REPL}
 	\end{figure}
 \end{frame}
 
@@ -143,6 +143,7 @@ $ screen /dev/ttyUSB0 115200
 	\begin{figure}[H]
 		\centering
 		\includegraphics[height=2in]{led_schematic.png}
+		\caption{Relevant Schematic Pieces}
 	\end{figure}
 \end{frame}
 
@@ -157,16 +158,16 @@ $ screen /dev/ttyUSB0 115200
 	]
 	{python}
 >>> import machine
->>> red = machine.Pin(0, machine.Pin.OUT)
->>> orange = machine.Pin(3, machine.Pin.OUT)
->>> green = machine.Pin(4, machine.Pin.OUT)
+>>> red = machine.Pin(0, machine.Pin.OUT) # D0
+>>> orange = machine.Pin(3, machine.Pin.OUT) # D3
+>>> green = machine.Pin(4, machine.Pin.OUT) # D4
 >>> green.on() # ???
 	\end{minted}
 \end{frame}
 
 \begin{frame}[fragile]
 	\frametitle{Drivers: LEDs -- Physical Versus Mapped Pins}
-	MicroPython uses \emph{physical pins} of the ESP8266, not the \emph{mapped pins} (\texttt{D0}) of the Wemos.
+	MicroPython uses \emph{physical pins} of the ESP8266, not the \emph{mapped pins} (\texttt{D0}, etc.) of the Wemos specifically.
 	\begin{columns}[t]
 		\begin{column}{{\textwidth}/3}
 			\begin{figure}[H]
@@ -274,7 +275,7 @@ $ screen /dev/ttyUSB0 115200
 		\begin{column}{{2\textwidth}/3}
 			\begin{itemize}
 				\item Put it all together!
-				\item (Not that exciting to implement the driver...)
+				\item (Not that exciting to implement...)
 			\end{itemize}
 			\begin{minted}
 	[
@@ -302,6 +303,7 @@ Connection successful
 			\begin{figure}[H]
 				\centering
 				\includegraphics[width=\textwidth]{inet.jpg}
+				\caption{Readings on Phone}
 			\end{figure}
 		\end{column}
 	\end{columns}
